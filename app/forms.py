@@ -9,14 +9,14 @@ from wtforms.validators import ValidationError, Email
 from app.models import User
 
 
-
-
 class RegistrationForm(FlaskForm):
     username = StringField('Имя пользователя', validators=[DataRequired()])
     email = StringField('Почта', validators=[DataRequired(), Email()])
     password = PasswordField('Пароль', validators=[DataRequired()])
+
     """password2 = PasswordField(
         'Повторите пароль', validators=[DataRequired(), EqualTo('password')])"""
+
     submit = SubmitField('Зарегистрироваться')
 
     def validate_username(self, username):
@@ -49,7 +49,6 @@ class EditProfileForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    post = TextAreaField('Напишите что-нибудь.', validators=[
-        DataRequired(), Length(min=1, max=10000)])
+    post = TextAreaField('Напишите что-нибудь.', validators=[Length(min=0, max=10000)])
     file = FileField()
     submit = SubmitField('Выложить')

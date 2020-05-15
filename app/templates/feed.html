@@ -1,8 +1,10 @@
 {% extends "base.html" %}
-{% block content %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+{% block content %}
     {% if form %}
-    <div style="text-align: left; width: 40%; margin: auto;">
+    <div class="post-input-window">
         {% if prev_url and not next_url%}
             <p align="center">
                 <a href="{{ prev_url }}">
@@ -26,21 +28,21 @@
             </a></p>
         {% endif %}
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data" >
             {{ form.hidden_tag() }}
-            <p>
+            <div class="post" align="center">
                 {{ form.post(class_="post-input") }}<br>
                 {% for error in form.post.errors %}
-                <p align="center", style="color: red; margin-top: -1em;">{{ error }}</p>
+                <p align="center" style="color: red;">{{ error }}</p>
                 {% endfor %}
-                {{ form.file }}
-            <input type="submit">
-            </p>
+                {{ form.file() }}
+                <input type="submit" align="right" class="button">
+            </div>
         </form>
     </div>
     {% endif %}
 
-    <div style="text-align: left; width: 40%; margin: auto;">
+    <div style="text-align: left; width: 40%; margin: auto; padding-top: 1em;">
         {% for post in posts %}
         {% include '_post.html' %}
         {% endfor %}

@@ -16,8 +16,8 @@ unique_id_lst = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D"
 
 
 @login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 followers = db.Table('followers',
@@ -82,6 +82,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     image_id = db.Column(db.String(140))
+    resize = db.Column(db.String(1))
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
@@ -93,13 +94,3 @@ class Post(db.Model):
             identeficator = "".join([random.choice(unique_id_lst) for _ in range(6)])
             used = Post.query.filter_by(image_id=identeficator).first()
         return identeficator
-
-
-
-"""
-user = User(username="james123", email="james@example.com")
-user.set_password("asdf12345")
-db.session.add(user)
-db.session.commit()
-db.session.close()
-"""

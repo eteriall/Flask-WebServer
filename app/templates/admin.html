@@ -1,0 +1,31 @@
+{% extends "base.html"%}
+
+{% block content %}
+<div align="center">
+{% if admin %}
+<h1>Публикации</h1>
+{% for post in posts %}
+<p> ID: {{post.id}} |
+    Автор: {{post.author.username}} |
+    Время: {{post.timestamp}} |
+    <a href="/user/{{post.author.username}}"> Профиль автора </a> |
+    <a href="/delete_post/{{post.id}}"> Удалить </a>
+</p>
+{% endfor %}
+
+<h1>Пользователи</h1>
+
+{% for user in users %}
+<p> ID: {{user.id}} |
+    Имя: {{user.username}} |
+    Почта: {{user.email}} |
+    <a href="/user/{{user.username}}"> Профиль автора </a>|
+    <a href="/delete_user/{{user.id}}"> Удалить </a>
+</p>
+{% endfor %}
+
+{% else %}
+    <p>Ошибка доступа</p>
+{% endif %}
+</div>
+{% endblock %}

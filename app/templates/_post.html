@@ -1,38 +1,49 @@
 <link rel="stylesheet" href="/static/main.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <div class="post">
 
-        <div class="post-avatar">
+    <div class="post-avatar">
             <a href="{{ url_for('user', username=post.author.username) }}">
         <img src="{{ post.author.avatar(36) }}" class="post-avatar">
             </a>
             </div>
 
-
     <div class="post-username">
         {{post.author.username}}
     </div>
 
-    {% if post.timestamp.strftime("%d.%m") == now %}
-    <p class="post-time">Сегодня, в {{post.timestamp.strftime("%H:%M")}}</p>
-    {% else %}
-    <p class="post-time">{{post.timestamp.strftime("%d.%m %H:%M")}}</p>
-    {% endif %}
+    <p class="post-time">{{moment(post.timestamp).fromNow()}}</p>
 
+    {% if post.body %}
     <div class="post-text">
         <p>{{ post.body }}</p></div>
-
-
-    <p>#WorkingOnThis - Делаем хэштеги.</p>
-
-
+    <p>#Association #YandexLyceum - Работа с хэштегами.</p>
     <script>$(document).ready(function() {
-  $("p").html(function(_, html) {
-    return html.replace(/(\#\w+)/g, '<span class="blue">$1</span>');
-  });
-});</script>
-{% if post.image_id %}
-    <img src="/static/uploads/{{ post.image_id }}.jpg" class="post-image">
-{% endif %}
+      $("p").html(function(_, html) {
+        return html.replace(/(\#\w+)/g, '<span class="blue">$1</span>');
+      });
+    });
+    </script>
+    {% endif %}
+
+    {% if post.image_id %}
+        <div align="center">
+            <a href="static/uploads/{{post.image_id}}.jpg">
+                {% if post.resize == "w" %}
+                    <img src="/static/uploads/{{ post.image_id }}.jpg" class="post-image-w" align="center">
+                {% else %}
+                     <img src="/static/uploads/{{ post.image_id }}.jpg" class="post-image-h" align="center">
+                {% endif %}
+            </a>
+        </div>
+    {% endif %}
+
+    {% if post.user_id == current_user.id %}
+        <a href="/delete_post/{{post.id}}">
+            <p class="small-text">
+            Удалить
+            </p>
+        </a>
+    {% endif %}
+
 </div>

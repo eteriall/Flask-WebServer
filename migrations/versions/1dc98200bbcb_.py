@@ -1,8 +1,8 @@
-"""Backuped reserve copy
+"""empty message
 
-Revision ID: 12a355f1041e
+Revision ID: 1dc98200bbcb
 Revises: 
-Create Date: 2020-05-15 15:05:35.813763
+Create Date: 2020-05-16 00:06:07.353548
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '12a355f1041e'
+revision = '1dc98200bbcb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,6 +41,7 @@ def upgrade():
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('image_id', sa.String(length=140), nullable=True),
+    sa.Column('resize', sa.String(length=1), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

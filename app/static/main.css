@@ -1,23 +1,55 @@
 a {
 text-decoration: none;
+
 }
 
-body {
-background-color: #EDEEF0;
+
+.post-avatar {
+border-radius: 50%;
+
 }
+
+
+.blue{
+color: #2A5D88;
+
+}
+
+
+.blue:hover {
+text-decoration: underline;
+
+}
+
+.time {
+margin-top: 0.6em;
+
+}
+
+
+body {
+background-color: white;
+
+}
+
 
 a:hover{
 color: red;
+
 }
+
 
 p, h1, h3 {
 font-family: "Istok Web";
+
 }
+
 
 img.logo{
 margin-bottom: -2em;
 left: 10%;
 }
+
 
 p.greeting{
 position: absolute;
@@ -33,6 +65,7 @@ line-height: 29px;
 color: #000000;
 }
 
+
 .page-name{
 font-family: "Istok Web";
 position: relative;
@@ -43,9 +76,6 @@ margin-top: 0.5em;
 transform-origin: 10% 10%;
 }
 
-.time {
-margin-top: 0.6em;
-}
 
 input {
 font-family: "Istok Web";
@@ -59,33 +89,33 @@ text-align: center;
 font-size: 1em;
 }
 
+
 .post {
 font-family: "Istok Web";
 width: 110%;
 background: #fff;
 border-radius: 4px;
-box-shadow: 0 2px 0 0 #d7d8db;
+border-color: #d7d8db;
+box-shadow: 1px 2px 2px 2px #d7d8db;
 padding: 15px;
 margin-left: -3.1em;
 margin-bottom: 15px;
 }
 
-.post-avatar {
-border-radius: 50%;
+
+.post-input-window{
+text-align: left;
+width: 40%;
+margin: auto;
+margin-top: 1em;
 }
 
-.blue{
-color: #2A5D88;
-}
-
-.blue:hover {
-text-decoration: underline;
-}
 
 .post-text{
 margin-top: 10px;
 margin-bottom: 10px;
 }
+
 
 .post-input {
 font-family: "Istok Web";
@@ -96,11 +126,27 @@ text-align: center; font-size: 1em;
 padding: 10px; resize: vertical;
 }
 
-.post-image {
-height: 200px;
-width: auto;
-position: relative;
+
+.post-image{
+height: auto;
+width: 510px;
+margin: auto;
 }
+
+
+.post-image-h{
+height: auto;
+width: 510px;
+margin: auto;
+}
+
+
+.post-image-w{
+height: 400px;
+width: auto;
+margin: auto;
+}
+
 
 .post-avatar{
 float: left;
@@ -108,10 +154,12 @@ margin-right: 5px;
 margin-bottom: 5px;
 }
 
+
 .post-username{
 font-size: 20px;
 margin-bottom: -10px;
 }
+
 
 .post-time{
 margin-top: 2px;
@@ -119,17 +167,6 @@ margin-left: -10px;
 color: #9999AE;
 }
 
-.button{
-margin: 5px; padding-left: 20px;
-padding-right: 20px; size: 32; height: 2em;
-border-radius: 10px; border-color: black;
-border-width: 1px; text-align: center;
-font-size: 1em; background-color: white;
-}
-
-.button:hover{
-background: #e3e3e3;
-}
 
 .post-button {
 margin-top: -0.5em; margin-bottom: 1em;
@@ -140,11 +177,38 @@ border-width: 1px;
 font-size: 1em; background-color: white;
 }
 
+
 .post-button:hover{
 background: #e3e3e3;
+
 }
 
 
+.button{
+margin: 5px; padding-left: 20px;
+padding-right: 20px; size: 32; height: 2em;
+border-radius: 10px; border-color: black;
+border-width: 1px; text-align: center;
+font-size: 1em; background-color: white;
+}
+
+
+.button:hover{
+background: #e3e3e3;
+
+}
+
+
+.small-text {
+color: #9999AE;
+
+}
+
+
+.small-text:hover {
+color: red;
+
+}
 
 
 #slideshow {
@@ -153,6 +217,7 @@ width: 240px; height: 240px;
 padding: 10px;
 box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
+
 
 #slideshow > div {
 position: absolute;

@@ -1,6 +1,7 @@
 from datetime import datetime
 
-from flask import flash, request
+from PIL import Image
+from flask import request
 from flask import url_for, redirect, render_template
 from flask_login import current_user, login_user
 from flask_login import login_required
@@ -23,6 +24,11 @@ from app.models import User
 
 class UploadForm(FlaskForm):
     file = FileField()
+
+
+def is_admin():
+    Admins = ["Александр Рассказчиков"]
+    return True if current_user.username in Admins else False
 
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -52,6 +58,11 @@ def feed():
         if form.file.data is not None:
             post.image_id = post.unique_id()
             form.file.data.save('app/static/uploads/' + post.image_id + ".jpg")
+            width, height = Image.open('app/static/uploads/' + post.image_id + ".jpg").size
+            if width >= height:
+                post.resize = "h"
+            else:
+                post.resize = "w"
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('feed'))
@@ -77,7 +88,7 @@ def explore():
         if posts.has_next else None
     prev_url = url_for('explore', page=posts.prev_num) \
         if posts.has_prev else None
-    return render_template("feed.html", title='Explore', posts=posts.items,
+    return render_template("feed.html", posts=posts.items,
                            next_url=next_url, prev_url=prev_url)
 
 
@@ -123,14 +134,11 @@ def home():
 def follow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
-        flash('User {} not found.'.format(username))
         return redirect(url_for('index'))
     if user == current_user:
-        flash('You cannot follow yourself!')
         return redirect(url_for('user', username=username))
     current_user.follow(user)
     db.session.commit()
-    flash('You are following {}!'.format(username))
     return redirect(url_for('user', username=username))
 
 
@@ -139,7 +147,6 @@ def follow(username):
 def unfollow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
-        flash('User {} not found.'.format(username))
         return redirect(url_for('index'))
     if user == current_user:
         return redirect(url_for('user', username=username))
@@ -155,7 +162,6 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        print(User.query.all())
         if user is None or not user.check_password(form.password.data):
             return render_template('login.html', title='Вход',
                                    form=form, error="WrongTry")
@@ -177,7 +183,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         u = User(username=form.username.data,
-                            email=form.email.data)
+                 email=form.email.data)
         u.set_password(form.password.data)
         db.session.add(u)
         db.session.commit()
@@ -191,3 +197,38 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     posts = user.posts.order_by(Post.timestamp.desc())
     return render_template('user.html', user=user, posts=posts)
+
+
+@app.route('/admin')
+@login_required
+def admin():
+    posts = Post.query.order_by(Post.timestamp.desc())
+    users = User.query.all()
+    return render_template('admin.html',
+                           admin=is_admin(),
+                           posts=posts,
+                           users=users)
+
+
+@app.route('/delete_post/<post_id>')
+@login_required
+def delete_post(post_id):
+    if is_admin():
+        Post.query.filter_by(id=post_id).delete()
+        db.session.commit()
+        return redirect(url_for('feed'))
+    else:
+        if current_user.id == Post.query.filter_by(id=post_id).first().user_id:
+            Post.query.filter_by(id=post_id).delete()
+        return redirect(url_for("feed"))
+
+
+@app.route('/delete_user/<user_id>')
+@login_required
+def delete_user(user_id):
+    if is_admin():
+        User.query.filter_by(id=user_id).delete()
+        db.session.commit()
+        return redirect(url_for('feed'))
+    else:
+        return redirect(url_for("feed"))
