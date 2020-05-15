@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в аккаунт</title>
+</head>
+<body>
+
+{% block content %}
+
+    <form action="" method="post" novalidate align="center">
+        {{ form.hidden_tag() }}
+        <p>Ещё не с нами? <a href="/register"><b>Зарегистрируйтесь сейчас.</b></a> </p>
+        {% if error == "WrongTry" %}
+        <p style="color: red;"><b>Неправильный логин или пароль.</b></p>
+        {% endif %}
+
+        <p>
+            <b>{{ form.username.label }}</b><br>
+            {{ form.username(size=32, class_="form-control") }}
+
+            {% for error in form.username.errors %}
+                <span style="color: red;"><br />{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            <b>{{ form.password.label }}</b><br>
+            {{ form.password(size=32, class_="form-control") }}
+
+            {% for error in form.password.errors %}
+                <span style="color: red;"><br />{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+
+        <p>{{ form.submit(class_="button") }}</p>
+
+    </form>
+{% endblock %}
+
+</body>
+</html>

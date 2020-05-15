@@ -1,0 +1,163 @@
+a {
+text-decoration: none;
+}
+
+body {
+background-color: #EDEEF0;
+}
+
+a:hover{
+color: red;
+}
+
+p, h1, h3 {
+font-family: "Istok Web";
+}
+
+img.logo{
+margin-bottom: -2em;
+left: 10%;
+}
+
+p.greeting{
+position: absolute;
+width: 400px;
+height: 30%;
+left: 10%;
+top: 180px;
+font-family: Istok Web;
+font-style: normal;
+font-weight: normal;
+font-size: 20px;
+line-height: 29px;
+color: #000000;
+}
+
+.page-name{
+font-family: "Istok Web";
+position: relative;
+margin: 0 auto;
+font-size: 2em;
+margin-bottom: -0.5em;
+margin-top: 0.5em;
+transform-origin: 10% 10%;
+}
+
+.time {
+margin-top: 0.6em;
+}
+
+input {
+font-family: "Istok Web";
+margin: 5px;
+size: 32;
+height: 2em;
+border-radius: 10px;
+border-color: black;
+border-width: 1px;
+text-align: center;
+font-size: 1em;
+}
+
+.post {
+font-family: "Istok Web";
+width: 110%;
+background: #fff;
+border-radius: 4px;
+box-shadow: 0 2px 0 0 #d7d8db;
+padding: 15px;
+margin-left: -3.1em;
+margin-bottom: 15px;
+}
+
+.post-avatar {
+border-radius: 50%;
+}
+
+.blue{
+color: #2A5D88;
+}
+
+.blue:hover {
+text-decoration: underline;
+}
+
+.post-text{
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.post-input {
+font-family: "Istok Web";
+margin: 5px; width: 100%;
+height: 5em; border-radius: 10px;
+border-color: #D3D9DE; border-width: 1px;
+text-align: center; font-size: 1em;
+padding: 10px; resize: vertical;
+}
+
+.post-image {
+height: 200px;
+width: auto;
+position: relative;
+}
+
+.post-avatar{
+float: left;
+margin-right: 5px;
+margin-bottom: 5px;
+}
+
+.post-username{
+font-size: 20px;
+margin-bottom: -10px;
+}
+
+.post-time{
+margin-top: 2px;
+margin-left: -10px;
+color: #9999AE;
+}
+
+.button{
+margin: 5px; padding-left: 20px;
+padding-right: 20px; size: 32; height: 2em;
+border-radius: 10px; border-color: black;
+border-width: 1px; text-align: center;
+font-size: 1em; background-color: white;
+}
+
+.button:hover{
+background: #e3e3e3;
+}
+
+.post-button {
+margin-top: -0.5em; margin-bottom: 1em;
+padding-left: 20px; padding-right: 20px;
+size: 32; height: 2em;
+border-radius: 10px; border-color: black;
+border-width: 1px;
+font-size: 1em; background-color: white;
+}
+
+.post-button:hover{
+background: #e3e3e3;
+}
+
+
+
+
+#slideshow {
+margin: 80px auto; position: relative;
+width: 240px; height: 240px;
+padding: 10px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+#slideshow > div {
+position: absolute;
+top: 10px;
+left: 10px;
+right: 10px;
+bottom: 10px;
+}

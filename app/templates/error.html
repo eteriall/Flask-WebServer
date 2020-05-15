@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ error }}</title>
+</head>
+<body>
+{% block content %}
+<div style="margin-left: auto; text-align: center;">
+    <h1>{{ error }}</h1>
+    <h1>Что-то пошло не так.</h1>
+    <p><a href="/home"><b>Вернуться на главную страницу</b></a></p>
+</div>
+{% endblock %}
+</body>
+</html>

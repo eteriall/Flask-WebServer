@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+{% block content %}
+    <div align="center">
+    <h1 style="margin-bottom: 1em">Привет, <br \>{{ current_user.username }}!</h1>
+        <h3><a href="/feed">Лента</a></h3>
+        <h3><a href="/explore">Explore</a></h3>
+        <h3><a href="{{ url_for('user', username=current_user.username) }}">Мой профиль</a></h3>
+        <h3><a href="/edit_profile">Настройки</a></h3>
+        <h3><a href="/logout">Выход</a></h3>
+    </div>
+{% endblock %}
+</body>
+</html>

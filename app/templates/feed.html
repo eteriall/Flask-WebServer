@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% if form %}
+    <div style="text-align: left; width: 40%; margin: auto;">
+        {% if prev_url and not next_url%}
+            <p align="center">
+                <a href="{{ prev_url }}">
+                    Более новые записи
+                </a></p>
+        {% endif %}
+
+        {% if next_url and not prev_url %}
+            <p align="center">
+                <a href="{{ next_url }}">
+                    Более старые записи
+                </a></p>
+        {% endif %}
+
+        {% if next_url and prev_url %}
+            <p align="center">
+                <a href="{{ prev_url }}">
+                    Более новые записи</a>
+                | <a href="{{ next_url }}">
+                Более старые записи
+            </a></p>
+        {% endif %}
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.post(class_="post-input") }}<br>
+                {% for error in form.post.errors %}
+                <p align="center", style="color: red; margin-top: -1em;">{{ error }}</p>
+                {% endfor %}
+                {{ form.file }}
+            <input type="submit">
+            </p>
+        </form>
+    </div>
+    {% endif %}
+
+    <div style="text-align: left; width: 40%; margin: auto;">
+        {% for post in posts %}
+        {% include '_post.html' %}
+        {% endfor %}
+    </div>
+
+    {% if prev_url and not next_url%}
+            <p align="center">
+                <a href="{{ prev_url }}">
+                    Более новые записи
+                </a></p>
+        {% endif %}
+
+        {% if next_url and not prev_url %}
+            <p align="center">
+                <a href="{{ next_url }}">
+                    Более старые записи
+                </a></p>
+        {% endif %}
+
+        {% if next_url and prev_url %}
+            <p align="center">
+                <a href="{{ prev_url }}">
+                    Более новые записи</a>
+                | <a href="{{ next_url }}">
+                Более старые записи
+            </a></p>
+        {% endif %}
+{% endblock %}

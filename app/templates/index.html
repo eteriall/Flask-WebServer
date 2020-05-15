@@ -1,0 +1,55 @@
+<html>
+<head>
+    <link rel="stylesheet" href="static/main.css">
+       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body link="black" vlink="black" alink="black">
+
+    <img src="static/frame.svg" class="logo">
+
+    <style>
+    .mySlides {display:none;}
+        img.logo{
+    position: absolute;
+    margin-left: 60px;
+    width: 300px;
+    height: 200px;
+    }
+    </style>
+
+    <p class="greeting">
+        Привет. Добро пожаловать на сайт, созданный программистами и для программистов.
+        Тут ты можешь найти интересные задания разного содержания и уровня сложности,
+        посоревноваться с другими ребятами в навыках программирования и узнать много нового.
+        <b><a href="/register"> Нажми,</a></b> если хочешь присоединиться к нам,
+        или <b><a href="/login"> нажми сюда</a></b> если ты уже с нами.
+        <br /><br />
+        *Будет лучше, если вы воспользуетесь компьютерной версией сайта.
+    </p>
+
+
+    <div class="w3-content w3-section" style="max-width:500px; margin-left: 45em; padding-top: 10%;">
+      <img class="mySlides w3-animate-top" src="static/t-ex1.svg" style="width:100%">
+      <img class="mySlides w3-animate-top" src="static/t-ex2.svg" style="width:100%">
+      <img class="mySlides w3-animate-top" src="static/t-ex3.svg" style="width:100%">
+    </div>
+
+    <script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      myIndex++;
+      if (myIndex > x.length) {myIndex = 1}
+      x[myIndex-1].style.display = "block";
+      setTimeout(carousel, 2500);
+    }
+    </script>
+    </body>
+</html>

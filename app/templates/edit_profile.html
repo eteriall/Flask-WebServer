@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div align="center">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.about_me.label }}<br>
+            <div style="text-align: left; width: 350; margin-top: -1em;">
+            {{ form.about_me(class_="post-input") }}</div><br>
+            {% for error in form.about_me.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit(class_="button") }}</p>
+    </form>
+</div>
+{% endblock %}

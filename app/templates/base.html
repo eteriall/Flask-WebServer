@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/main.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+        <script>$(document).ready(function() {
+              $("p").html(function(_, html) {
+                return html.replace(/(\#\w+)/g, '<span class="blue">$1</span>');
+              });
+            });
+        </script>
+
+        {% if title %}
+      <title>{{ title }} - АЮП</title>
+      {% else %}
+      <title>Ассоциация Юных Программистов</title>
+      {% endif %}
+
+    </head>
+
+    <body link="black" vlink="black" alink="black">
+    <div align="center">
+        <a href="/home">
+    <img src="/static/logo.svg" class="logo">
+            </a>
+    </div>
+
+</div>
+    {% if time and date %}
+    <h1 class="time" align="center">{{ time }}, {{ date }}</h1>
+
+    {% else %}
+        {% if time %}
+        <h1 class="time" align="center">{{ time }}</h1>
+        {% endif %}
+    {% endif %}
+
+    {% if title %}
+        <h3 class="page-name" align="center">{{ title }}</h3>
+    {% endif %}
+    {% block content %}{% endblock %}
+    </body>
+</html>
