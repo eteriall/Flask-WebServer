@@ -8,6 +8,14 @@
             </a>
             </div>
 
+    {% if post.user_id == current_user.id %}
+        <a href="/delete_post/{{post.id}}">
+            <p class="small-text">
+            Удалить
+            </p>
+        </a>
+    {% endif %}
+
     <div class="post-username">
         {{post.author.username}}
     </div>
@@ -17,7 +25,7 @@
     {% if post.body %}
     <div class="post-text">
         <p>{{ post.body }}</p></div>
-    <p>#Association #YandexLyceum - Работа с хэштегами.</p>
+    <p>#Flask #YandexLyceum #Web #AlexRasskazchikov</p>
     <script>$(document).ready(function() {
       $("p").html(function(_, html) {
         return html.replace(/(\#\w+)/g, '<span class="blue">$1</span>');
@@ -29,7 +37,7 @@
     {% if post.image_id %}
         <div align="center">
             <a href="static/uploads/{{post.image_id}}.jpg">
-                {% if post.resize == "w" %}
+                {% if post.resize == "h" %}
                     <img src="/static/uploads/{{ post.image_id }}.jpg" class="post-image-w" align="center">
                 {% else %}
                      <img src="/static/uploads/{{ post.image_id }}.jpg" class="post-image-h" align="center">
@@ -38,12 +46,5 @@
         </div>
     {% endif %}
 
-    {% if post.user_id == current_user.id %}
-        <a href="/delete_post/{{post.id}}">
-            <p class="small-text">
-            Удалить
-            </p>
-        </a>
-    {% endif %}
 
 </div>
